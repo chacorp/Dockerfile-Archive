@@ -11,17 +11,14 @@ RUN apt-get install -y \
     libaudit-dev \
     libhdf5-dev \
     libboost-all-dev
-
 # ### Build OpenPose
 # RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git
 # RUN cd openpose && git submodule update --init --recursive --remote
-
-# ### Our patch for OpenPose
+# ### RVH patch for OpenPose
 # RUN git apply /source/RVH_Mesh_Registration/assets/openpose.patch
 # ### this often falls into error 
 # ### -> do it manually by copy-and-paste to openpose
 # ### -> you need to open (assets/openpose.patch) file to do so.
-
 ADD openpose /tmp/openpose
 RUN export PATH=/usr/local/cuda-11.4/bin:$PATH
 RUN export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64:$LD_LIBRARY_PATH
